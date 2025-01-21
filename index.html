@@ -8,7 +8,7 @@
 <style>
   body {background-color: #000000;}
   .centered_container {
-  height: auto;
+  height: 95vH;
   text-align: center;
   }
   .audio_group{
@@ -16,15 +16,26 @@
   font-size: 3vmax;
   color: white;
   text-align: center;
-  margin-top: 15%;
+  /* margin-top: 15%; */
   }
   .names{
     margin: 2%;
   }
 
+  .centered_container #trigger  {
+    filter: invert(1);
+    cursor: pointer;
+
+  }
+
+  .audio_group audio {
+    display: none;
+  }
+
+
   footer {
     position: absolute;
-    bottom: 15px;
+    top: 96vH;
   }
 
   footer .attribution {
@@ -42,23 +53,44 @@
 <body>
   <div class="centered_container">
     <div>
-      </div>
+      <img src="img/geofractions-qr2.png" alt="audio swarm qr code">
+    </div>
     <div>
-    <img src="img/geofractions-qr2.png" alt="audio swarm qr code">
-      </div>
+
+        <img id="trigger" src="img/icons/play-button.png" alt="PLAY" width="400" />
+
+    </div>
      <div class="audio_group">     
       <audio id="recording" controls="true">
         <source src="audio/John_Grzinich-Geofractions-short-2024.mp3" type="audio/mpeg">
       </audio>
-      <div class="names"> <i>John Grzinich<br>
-        AudioSwarm : Geofractions</i></div>
-    
-    </div><br>
+      <div class="names"> 
+        <i>John Grzinich<br>
+        AudioSwarm : Geofractions</i>
+      </div>
+    </div>
   </div>
   <footer>
     <div class="attribution">
       <a href="https://www.flaticon.com/free-icons/music-and-multimedia" title="music and multimedia icons">Music and multimedia icons created by Creatype - Flaticon</a>
       </div>
-  </footer>    
+  </footer>
+  <script type="text/javascript">
+    const audio = new Audio("audio/John_Grzinich-Geofractions-short-2024.mp3")
+    const trigger = document.querySelectorAll("#trigger")
+    let playing = false
+    trigger.forEach(button => {
+      button.addEventListener("click", () => {
+        if (playing) {
+          audio.pause()
+          button.src="img/icons/play-button.png"
+        } else {
+          audio.play()
+          button.src="img/icons/pause.png"
+        }
+        playing = !playing
+      })
+    })
+  </script>
 </body
 </html>
